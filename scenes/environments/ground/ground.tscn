@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://db2ivjr5wsa6b"]
+
+[ext_resource type="Texture2D" uid="uid://d4ir5f5nn5xxp" path="res://assets/kenney_prototype-textures/PNG/Dark/texture_10.png" id="1_gci1g"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wlneq"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4h8uw"]
+albedo_texture = ExtResource("1_gci1g")
+uv1_triplanar = true
+
+[node name="Ground" type="Node3D" unique_id=369219827]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1382008974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18142974, 1.0427833, -0.7482569)
+mesh = SubResource("PlaneMesh_wlneq")
+surface_material_override/0 = SubResource("StandardMaterial3D_4h8uw")
