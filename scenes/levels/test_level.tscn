@@ -10,10 +10,10 @@
 [node name="Ground" parent="." unique_id=369219827 instance=ExtResource("1_jbqir")]
 
 [node name="Player" parent="." unique_id=452477216 node_paths=PackedStringArray("enemy", "target") instance=ExtResource("2_yautc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69212806, 0.6972704, -3.3016653)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6448545, 0.6972704, -34.027218)
 enemy = NodePath("../test_target")
 target = NodePath("../test_target")
 
 [node name="test_target" type="MeshInstance3D" parent="." unique_id=2057523395]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0967798, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 6.458211, 0)
 mesh = SubResource("CylinderMesh_yautc")
