@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://deg8fps4p533t"]
+
+[ext_resource type="Script" uid="uid://o3rwvgy5g0e4" path="res://entities/player/character_body_3d.gd" id="1_symyc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_abrql"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sglur"]
+
+[node name="player" type="CharacterBody3D" unique_id=964518628]
+script = ExtResource("1_symyc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1818880082]
+mesh = SubResource("BoxMesh_abrql")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=17842207]
+shape = SubResource("BoxShape3D_sglur")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1570759292]
+transform = Transform3D(1, 0, 0, 0, 0.9077775, 0.41945207, 0, -0.41945207, 0.9077775, 0, 3.2724085, 3.3954697)
+
+[node name="Player" type="Node3D" parent="." unique_id=452477216]
