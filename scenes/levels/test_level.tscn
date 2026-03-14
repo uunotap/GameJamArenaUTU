@@ -9,10 +9,8 @@
 [node name="Ground" parent="." unique_id=369219827 instance=ExtResource("1_jbqir")]
 
 [node name="Player" parent="." unique_id=452477216 node_paths=PackedStringArray("enemy") instance=ExtResource("2_yautc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6448545, 0.6972704, -34.027218)
+transform = Transform3D(-0.9996439, 0, -0.026682938, 0, 1, 0, 0.026682938, 0, -0.9996439, 2.6448545, 0.6972704, -34.027218)
 enemy = NodePath("../Boss")
 
 [node name="Boss" parent="." unique_id=754335715 instance=ExtResource("3_fr1um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20248985, 5.8160954, -0.19300842)
-
-[node name="DashCooldown" type="Timer" parent="." unique_id=455174011]
