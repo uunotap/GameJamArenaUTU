@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ktsl68bdeb4u" path="res://entities/bossKreatura/boss.tscn" id="1_fr1um"]
 [ext_resource type="PackedScene" uid="uid://db2ivjr5wsa6b" path="res://scenes/environments/ground/ground.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://deg8fps4p533t" path="res://entities/player/player.tscn" id="2_yautc"]
+[ext_resource type="PackedScene" uid="uid://bnff25lxf36bt" path="res://entities/bossKreatura/attacks/ground rise attack.tscn" id="4_v45ci"]
 
 [node name="TestLevel" type="Node3D" unique_id=1427925101]
 
@@ -11,7 +12,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.973322, 0)
 player = NodePath("../Player")
 
 [node name="Ground" parent="." unique_id=369219827 instance=ExtResource("1_jbqir")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="Player" parent="." unique_id=452477216 node_paths=PackedStringArray("enemy") instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6448545, 0.6972704, -34.027218)
 enemy = NodePath("../Boss")
+
+[node name="GroundRiseAttack" parent="." unique_id=747053510 instance=ExtResource("4_v45ci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5625143, -0.25727558, -29.304028)
