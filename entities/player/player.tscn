@@ -9,7 +9,7 @@
 [node name="player" type="CharacterBody3D" unique_id=964518628]
 script = ExtResource("1_symyc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1818880082]
+[node name="modelPlaceHolder" type="MeshInstance3D" parent="." unique_id=1818880082]
 mesh = SubResource("BoxMesh_abrql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=17842207]
