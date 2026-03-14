@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://deg8fps4p533t"]
 
 [ext_resource type="Script" uid="uid://o3rwvgy5g0e4" path="res://entities/player/character_body_3d.gd" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://di38aq7tdk5nn" path="res://entities/interface.tscn" id="2_abrql"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_abrql"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sglur"]
 
 [node name="player" type="CharacterBody3D" unique_id=964518628]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_symyc")
 
 [node name="modelPlaceHolder" type="MeshInstance3D" parent="." unique_id=1818880082]
@@ -21,3 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 4.5, 
 [node name="Player" type="Node3D" parent="." unique_id=452477216]
 
 [node name="DashCooldown" type="Timer" parent="." unique_id=764849299]
+
+[node name="Interface" parent="." unique_id=459451547 instance=ExtResource("2_abrql")]
+
+[connection signal="health_changed" from="." to="Interface" method="_on_player_health_changed"]

@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://braiq0e8jk0h2"]
 
+[ext_resource type="PackedScene" uid="uid://ktsl68bdeb4u" path="res://entities/bossKreatura/boss.tscn" id="1_fr1um"]
 [ext_resource type="PackedScene" uid="uid://db2ivjr5wsa6b" path="res://scenes/environments/ground/ground.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://deg8fps4p533t" path="res://entities/player/player.tscn" id="2_yautc"]
-[ext_resource type="PackedScene" uid="uid://ktsl68bdeb4u" path="res://entities/bossKreatura/boss.tscn" id="3_fr1um"]
 
 [node name="TestLevel" type="Node3D" unique_id=1427925101]
+
+[node name="Boss" parent="." unique_id=754335715 node_paths=PackedStringArray("player") instance=ExtResource("1_fr1um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.973322, 0)
+player = NodePath("../Player")
 
 [node name="Ground" parent="." unique_id=369219827 instance=ExtResource("1_jbqir")]
 
 [node name="Player" parent="." unique_id=452477216 node_paths=PackedStringArray("enemy") instance=ExtResource("2_yautc")]
-transform = Transform3D(-0.9996439, 0, -0.026682938, 0, 1, 0, 0.026682938, 0, -0.9996439, 2.6448545, 0.6972704, -34.027218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6448545, 0.6972704, -34.027218)
 enemy = NodePath("../Boss")
-
-[node name="Boss" parent="." unique_id=754335715 instance=ExtResource("3_fr1um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20248985, 5.8160954, -0.19300842)
