@@ -37,7 +37,7 @@ func shoot_ball(target:Vector3):
 		instance.apply_impulse(global_position.direction_to(target)*10)
 
 func rise_att(target:Vector3):
-		var instance:RigidBody3D = rising_attack.instantiate()
+		var instance:Area3D = rising_attack.instantiate()
 		add_child(instance)
 		instance.global_position = target + Vector3(0,-2, 0)
 

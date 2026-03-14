@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends Area3D
 
 var lifetime: float = 2.0
 var traveltime: float =1.0
@@ -11,12 +11,14 @@ var target_position: Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_position=global_position
-	target_position=start_position+(Vector3(0,offset,0))
-	await get_tree().create_timer(lifetime).timeout 
-	self.queue_free()
+	
+	target_position=start_position
+	target_position.y+=offset
+	
+	get_tree().create_timer(lifetime).timeout.connect(queue_free)
 
 func _process(delta: float) -> void:
-	self.apply_force(-global_position.move_toward(target_position, delta)*Vector3.UP)
+	global_position = global_position.move_toward(start_position.lerp(target_position,10), delta)
 	
 	
 
