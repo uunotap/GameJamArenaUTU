@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bd73kbq4daw0d"]
+
+[ext_resource type="Script" uid="uid://bhx0rrree3ftt" path="res://entities/bossKreatura/attacks/expanding_attack.gd" id="1_616h7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oi0t7"]
+
+[node name="ExpandingAttack" type="Area3D" unique_id=1804874455]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_616h7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1420874483]
+shape = SubResource("SphereShape3D_oi0t7")

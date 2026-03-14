@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bon7vka8xtx1f"]
+
+[ext_resource type="Script" uid="uid://qoee2jl0ofdg" path="res://entities/bossKreatura/attacks/sweep_attack.gd" id="1_sw4jy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8qri3"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sw4jy"]
+
+[node name="SweepAttack" type="Area3D" unique_id=619100421]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_sw4jy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1759532476]
+shape = SubResource("CylinderShape3D_8qri3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=974502414]
+mesh = SubResource("CylinderMesh_sw4jy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

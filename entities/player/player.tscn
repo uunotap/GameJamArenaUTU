@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://deg8fps4p533t"]
 
-[ext_resource type="Script" uid="uid://o3rwvgy5g0e4" path="res://entities/player/character_body_3d.gd" id="1_symyc"]
+[ext_resource type="Script" uid="uid://o3rwvgy5g0e4" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://di38aq7tdk5nn" path="res://entities/interface.tscn" id="2_abrql"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_abrql"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_sglur"]
 
 [node name="player" type="CharacterBody3D" unique_id=964518628]
-collision_layer = 6
+collision_layer = 9
 script = ExtResource("1_symyc")
 
 [node name="modelPlaceHolder" type="MeshInstance3D" parent="." unique_id=1818880082]
