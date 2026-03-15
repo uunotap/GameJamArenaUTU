@@ -8,6 +8,7 @@ const JUMP_VELOCITY = 8
 @export var dash_duration: float = 0.2
 
 const ringBlast = preload("res://entities/player/PlayerProj.tscn")
+const audio = [preload("res://assets/audio/swoosh.ogg"), preload("res://assets/audio/splash.ogg")]
 
 
 
@@ -112,6 +113,7 @@ func dash(side: float):
 	is_dashing = true
 	can_dash = false
 	dash_direction_multiplier = side
+	$"../SFX".stream = audio[0]
 	$"../SFX".play()
 
 # After the duration, stop dashing
@@ -135,6 +137,8 @@ func _physics_process(delta: float) -> void:
 		var instance:RigidBody3D = ringBlast.instantiate()
 		add_child(instance)
 		instance.apply_impulse(global_position.direction_to(enemy.global_position)*20)
+		$"../SFX".stream = audio[1]
+		$"../SFX".play()
 		charge=0
 		charged=false
 	
