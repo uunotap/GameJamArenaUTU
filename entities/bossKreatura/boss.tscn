@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ktsl68bdeb4u"]
 
 [ext_resource type="Script" uid="uid://chqr8n0cyxp8f" path="res://entities/bossKreatura/boss.gd" id="1_ykiqu"]
-[ext_resource type="PackedScene" uid="uid://d0oa4qpw1jc5g" path="res://assets/boss_char.glb" id="2_ywd8p"]
+[ext_resource type="PackedScene" uid="uid://bn2u0b5mheur6" path="res://entities/bossKreatura/boss_char.tscn" id="2_ywd8p"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ykiqu"]
 
@@ -17,7 +17,7 @@ wait_time = 0.1
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("CylinderShape3D_ykiqu")
 
-[node name="boss_char" parent="." unique_id=108628762 instance=ExtResource("2_ywd8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.913462, 0)
+[node name="boss_char" parent="." unique_id=1790074554 instance=ExtResource("2_ywd8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
 
 [connection signal="timeout" from="basic attack" to="." method="_on_basic_attack_timeout"]

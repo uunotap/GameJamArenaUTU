@@ -2,8 +2,6 @@ class_name Boss
 extends CharacterBody3D
 const waterball = preload("res://entities/bossKreatura/attacks/waterball.tscn")
 const rising_attack = preload("res://entities/bossKreatura/attacks/ground rise attack.tscn")
-const audio = [preload("res://assets/audio/voicelines/grunt0.ogg"), preload("res://assets/audio/voicelines/grunt1.ogg"), preload("res://assets/audio/voicelines/grunt2.ogg"), preload("res://assets/audio/voicelines/grunt3.ogg"), preload("res://assets/audio/voicelines/grunt4.ogg"), preload("res://assets/audio/voicelines/grunt5.ogg"), preload("res://assets/audio/voicelines/grunt6.ogg"), preload("res://assets/audio/voicelines/grunt7.ogg"), preload("res://assets/audio/voicelines/grunt8.ogg"), preload("res://assets/audio/voicelines/special_attack0.ogg"), preload("res://assets/audio/voicelines/special_attack1.ogg"), preload("res://assets/audio/voicelines/special_attack2.ogg"), preload("res://assets/audio/voicelines/new_game.ogg"), preload("res://assets/audio/voicelines/victory.ogg")] 
-# 0-9 grunt, 10-12 spec, 13 ng, 14 W
 @export var player:Player
 
 
@@ -15,16 +13,15 @@ var increment:int = 0
 
 
 
-var hp:int = 20: set = set_hp
+var hp:int = 9: set = set_hp
 func set_hp(new_hp:int)-> void:
-	print( "boss took damage wowza")
-	$BSFX.stream = audio[randi() % 9]
-	$BSFX.play()
+	print("boss took damage wowza")
 	hp=new_hp
-	if hp <=4:
+	player.hp+=1
+	if hp <=2:
 		invulnerability=true
 		stateBoss=phaseState.PHASE3
-	elif hp <=12:
+	elif hp <=5:
 		invulnerability=true
 		stateBoss=phaseState.PHASE2
 
@@ -45,9 +42,9 @@ func set_state(new_state: phaseState) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"../BGM".play()
-	$BSFX.stream = audio[13]
-	$BSFX.play()
 	$"basic attack".start()
+	var animator:AnimationPlayer =$boss_char/AnimationPlayer
+	animator.play("AttackProjectile")
 
 
 
@@ -150,10 +147,11 @@ func phase1logic():
 				#shoot_ball_target(player.global_position-rand_off,1)
 			elif increment % 5 ==0:
 				var offset=randi_range(10, 25)
-				scatter_ball(player.global_position, 1, [0, offset, -offset])
+				for i in range(4):
+					var speed_variance =randi_range(1,1+i)
+					var curve_variance =randi_range(1,2)*25
+					curveWave(player.global_position,speed_variance,curve_variance,1,[-100,100])
 			else:
-				
-				
 				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),100)
 				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),100)
 				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),100)
@@ -161,17 +159,11 @@ func phase1logic():
 				
 		elif stateAtt==attState.ALT:
 			var offset=randi_range(10, 30)
-<<<<<<< HEAD
 			scatter_rise(player.global_position, [0, offset, -offset], 10)
-=======
-			scatter_rise(player.global_position, [0, offset, -offset], 4)
-			$BSFX.stream = audio[9 + (randi() % 3)]
-			$BSFX.play()
->>>>>>> 2acde44c851a0b5f1e884a942cfeefa148692cfc
 		elif stateAtt==attState.SWEEP:
 			for i in range(4):
 				var speed_variance =randi_range(1,1+i)
-				var curve_variance =randi_range(1,2)*25
+				var curve_variance =randi_range(1,5)*25
 				curveWave(player.global_position,speed_variance,curve_variance,1,[-100,100])
 			
 		
@@ -256,15 +248,23 @@ func phase3logic():
 		if step == 1 :
 			stateAtt=attState.ALT
 			amount_att=5
-		elif step == 4 or step == 8:
+		elif step == 4 or step == 6:
 			stateAtt = attState.TRICK
 			amount_att=1
 		elif step == 2 or step ==0:
 			stateAtt=attState.BASIC
 			amount_att=25
 		elif step == 3:
+			var speed_variance =randi_range(1,8)
+			var curve_variance =randi_range(1,2)*25
+			curveWave(player.global_position,speed_variance,curve_variance,1,[-100,100])
 			stateAtt = attState.SWEEP
 			amount_att=1
+		elif step ==5:
+			var speed_variance =randi_range(4,10)
+			var curve_variance =randi_range(1,4)*25
+			curveWave(player.global_position,speed_variance,curve_variance,1,[-100,100,50,-50])
+			amount_att=0
 		else:
 			step=0
 		step+=1	
@@ -307,6 +307,6 @@ func _on_basic_attack_timeout() -> void:
 	if stateBoss==phaseState.PHASE1:
 		phase1logic()	
 	elif stateBoss==phaseState.PHASE2:
-		pass
+		phase2logic()
 	elif stateBoss==phaseState.PHASE3:
 		phase3logic()

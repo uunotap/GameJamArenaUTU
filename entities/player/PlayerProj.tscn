@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c62h8cdjeefdu" path="res://entities/player/player_proj.gd" id="1_2yyx7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yyx7"]
+albedo_color = Color(0.9999997, 0.7257472, 0.3059653, 1)
+
 [sub_resource type="TorusMesh" id="TorusMesh_01qlx"]
+material = SubResource("StandardMaterial3D_2yyx7")
 rings = 8
 ring_segments = 4
 
@@ -17,6 +21,7 @@ max_contacts_reported = 1
 script = ExtResource("1_2yyx7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=836889211]
+transform = Transform3D(1, 0, 0, 0, -0.011833077, 0.99992996, 0, -0.99992996, -0.011833077, 0, 0, 0)
 mesh = SubResource("TorusMesh_01qlx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1883705417]

@@ -18,7 +18,7 @@ const audio = [preload("res://assets/audio/swoosh.ogg"), preload("res://assets/a
 
 #func set_state(new_state: int) -> void:
 #pass
-
+var can_damage:bool=true
 @export var hp_max:int = 6
 var hp:int = 6: set = set_health
 signal health_changed(old_value, new_value)
@@ -26,21 +26,24 @@ signal health_changed(old_value, new_value)
 func set_health(amount: int) -> void:
 	#print(amount)
 	var old=hp
-	if amount>0:
-		if amount<=hp_max:
-			hp=amount
+	if can_damage:
+		if amount>0:
+			if amount<=hp_max:
+				hp=amount
+			else:
+				hp=hp_max
 		else:
-			hp=hp_max
-	else:
-		hp=amount
-		if hp<=0:
-			hp=0
-			print("PLAYER IS DEAD!")
-			$"../BGM".stop()
-			$"../Boss/BSFX".stream = audio[2]
-			$"../Boss/BSFX".play()
-			#LOSING STATE HERE
-	
+
+			hp=amount
+			if hp<=0:
+				hp=0
+				print("PLAYER IS DEAD!")
+				$"../BGM".stop()
+				$"../Boss/BSFX".stream = audio[2]
+				$"../Boss/BSFX".play()
+				#LOSING STATE HERE
+	can_damage=false
+	$Timer.start()	
 	emit_signal("health_changed", old, hp)
 	
 
@@ -97,7 +100,7 @@ func set_chargeable(amount: int) -> void:
 
 func _on_charge_tick_timeout() -> void:
 	if charging:
-		charge+=10
+		charge+=8
 		chargeable_time-=1
 
 
@@ -137,8 +140,10 @@ func _physics_process(delta: float) -> void:
 	
 	if charged:
 		var instance:RigidBody3D = ringBlast.instantiate()
-		add_child(instance)
-		instance.apply_impulse(global_position.direction_to(enemy.global_position)*20)
+		instance.global_position=global_position
+		get_parent_node_3d().add_child(instance)
+		
+		instance.apply_impulse(global_position.direction_to(enemy.global_position)*50)
 		$"../SFX".stream = audio[1]
 		$"../SFX".play()
 		charge=0
@@ -189,3 +194,7 @@ func _physics_process(delta: float) -> void:
 		look_at(enemy.global_position)
 
 	move_and_slide()
+
+
+func _on_timer_timeout() -> void:
+	can_damage=true

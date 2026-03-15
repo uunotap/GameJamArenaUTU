@@ -11,6 +11,7 @@
 [node name="Boss" parent="." unique_id=754335715 node_paths=PackedStringArray("player") instance=ExtResource("1_fr1um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.973322, 0)
 player = NodePath("../Player")
+stateBoss = 2
 
 [node name="BSFX" type="AudioStreamPlayer3D" parent="Boss" unique_id=2029013030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27608585, 0)
