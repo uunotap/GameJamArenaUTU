@@ -35,6 +35,7 @@ func set_health(amount: int) -> void:
 		if hp<=0:
 			hp=0
 			print("PLAYER IS DEAD!")
+			$"../BGM".stop()
 			#LOSING STATE HERE
 	
 	emit_signal("health_changed", old, hp)
