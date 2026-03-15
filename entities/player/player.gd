@@ -111,6 +111,7 @@ func dash(side: float):
 	is_dashing = true
 	can_dash = false
 	dash_direction_multiplier = side
+	$"../SFX".play()
 
 # After the duration, stop dashing
 	await get_tree().create_timer(dash_duration).timeout
