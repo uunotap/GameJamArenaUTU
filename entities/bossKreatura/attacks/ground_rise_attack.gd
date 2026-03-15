@@ -1,8 +1,10 @@
 extends Area3D
 
-var lifetime: float = 2.0
-var traveltime: float =1.0
-var offset:float=10
+
+@export var lifetime:float = 4.0
+@export var traveltime: float =1.0
+@export var offset:float=10
+@export var damage:int = 1
 
 var start_position: Vector3
 var target_position: Vector3
@@ -27,9 +29,8 @@ func _process(delta: float) -> void:
 func hit(node:PhysicsBody3D):
 	if node.name=="Player":
 		var player:Player = node
-		player.hp-=1
-	self.queue_free()
-
+		player.hp-=damage
+	self.monitoring=false
 
 func _on_body_entered(body: Node3D) -> void:
 	hit(body)

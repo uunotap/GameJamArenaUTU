@@ -2,9 +2,10 @@ class_name Player
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
+const SPEED = 7.5
+const JUMP_VELOCITY = 8
+@export var dash_speed: float = 30.0
+@export var dash_duration: float = 0.2
 
 #enum moveState {IDLE, RUN, JUMP, DASH}
 
@@ -45,8 +46,7 @@ var can_dash: bool=true
 
 
 
-@export var dash_speed: float = 30.0
-@export var dash_duration: float = 0.2
+
 
 var dash_direction_multiplier: float = 0.0 # 1.0 for right, -1.0 for left
 
@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 
 		# 2. Calculate the Tangent (Perpendicular) vector
 		var tangent = offset.cross(Vector3.UP).normalized()
-		print(global_position.distance_to(enemy.global_position))
+		#print(global_position.distance_to(enemy.global_position))
 		# 3. Apply velocity along that tangent
 		velocity = tangent * dash_speed * dash_direction_multiplier
 
