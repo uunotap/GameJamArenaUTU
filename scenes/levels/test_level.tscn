@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ktsl68bdeb4u" path="res://entities/bossKreatura/boss.tscn" id="1_fr1um"]
 [ext_resource type="PackedScene" uid="uid://db2ivjr5wsa6b" path="res://scenes/environments/ground/ground.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://deg8fps4p533t" path="res://entities/player/player.tscn" id="2_yautc"]
+[ext_resource type="AudioStream" uid="uid://bb5rku4lmu7kc" path="res://assets/audio/TerrisGameJam_pidempi.ogg" id="4_v45ci"]
+[ext_resource type="AudioStream" uid="uid://5dkntq1xqej4" path="res://assets/audio/swoosh.ogg" id="5_48ne7"]
 
 [node name="TestLevel" type="Node3D" unique_id=1427925101]
 
@@ -16,3 +18,10 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 [node name="Player" parent="." unique_id=452477216 node_paths=PackedStringArray("enemy") instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6448545, 0.6972704, -34.027218)
 enemy = NodePath("../Boss")
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=539156854]
+stream = ExtResource("4_v45ci")
+parameters/looping = false
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1280699888]
+stream = ExtResource("5_48ne7")

@@ -40,6 +40,7 @@ func set_state(new_state: phaseState) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"../BGM".play()
 	$"basic attack".start()
 
 
