@@ -2,6 +2,8 @@ class_name Boss
 extends CharacterBody3D
 const waterball = preload("res://entities/bossKreatura/attacks/waterball.tscn")
 const rising_attack = preload("res://entities/bossKreatura/attacks/ground rise attack.tscn")
+const audio = [preload("res://assets/audio/voicelines/grunt0.ogg"), preload("res://assets/audio/voicelines/grunt1.ogg"), preload("res://assets/audio/voicelines/grunt2.ogg"), preload("res://assets/audio/voicelines/grunt3.ogg"), preload("res://assets/audio/voicelines/grunt4.ogg"), preload("res://assets/audio/voicelines/grunt5.ogg"), preload("res://assets/audio/voicelines/grunt6.ogg"), preload("res://assets/audio/voicelines/grunt7.ogg"), preload("res://assets/audio/voicelines/grunt8.ogg"), preload("res://assets/audio/voicelines/special_attack0.ogg"), preload("res://assets/audio/voicelines/special_attack1.ogg"), preload("res://assets/audio/voicelines/special_attack2.ogg"), preload("res://assets/audio/voicelines/new_game.ogg"), preload("res://assets/audio/voicelines/victory.ogg")] 
+# 0-9 grunt, 10-12 spec, 13 ng, 14 W
 @export var player:Player
 
 
@@ -15,7 +17,9 @@ var increment:int = 0
 
 var hp:int = 20: set = set_hp
 func set_hp(new_hp:int)-> void:
-	print("boss took damage wowza")
+	print( "boss took damage wowza")
+	$BSFX.stream = audio[randi() % 9]
+	$BSFX.play()
 	hp=new_hp
 	if hp <=4:
 		invulnerability=true
@@ -41,6 +45,8 @@ func set_state(new_state: phaseState) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"../BGM".play()
+	$BSFX.stream = audio[13]
+	$BSFX.play()
 	$"basic attack".start()
 
 
@@ -155,7 +161,13 @@ func phase1logic():
 				
 		elif stateAtt==attState.ALT:
 			var offset=randi_range(10, 30)
+<<<<<<< HEAD
 			scatter_rise(player.global_position, [0, offset, -offset], 10)
+=======
+			scatter_rise(player.global_position, [0, offset, -offset], 4)
+			$BSFX.stream = audio[9 + (randi() % 3)]
+			$BSFX.play()
+>>>>>>> 2acde44c851a0b5f1e884a942cfeefa148692cfc
 		elif stateAtt==attState.SWEEP:
 			for i in range(4):
 				var speed_variance =randi_range(1,1+i)
