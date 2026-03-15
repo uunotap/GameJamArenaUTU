@@ -13,7 +13,9 @@ config_version=5
 config/name="GameJamArenaUTU"
 run/main_scene="uid://braiq0e8jk0h2"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/stretch_mode=3
+boot_splash/image="uid://d0wjprpujggte"
+config/icon="uid://c4bbkke56ynpd"
 
 [dotnet]
 
