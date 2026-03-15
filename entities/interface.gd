@@ -18,6 +18,9 @@ func _on_player_health_changed(old:int,new:int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	
+	
 	pass # Replace with function body.
 
 
