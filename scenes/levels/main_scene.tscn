@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dhmjoly1r4qpy"]
+
+[ext_resource type="PackedScene" uid="uid://cn7i8r7jkl8jp" path="res://scenes/levels/mainlevel/level.tscn" id="1_ybdc1"]
+[ext_resource type="PackedScene" uid="uid://drr3ctv45si41" path="res://scenes/levels/mainlevel/level_fillings.tscn" id="2_3ulyp"]
+[ext_resource type="PackedScene" uid="uid://ktsl68bdeb4u" path="res://entities/bossKreatura/boss.tscn" id="3_q46b8"]
+[ext_resource type="PackedScene" uid="uid://deg8fps4p533t" path="res://entities/player/player.tscn" id="4_43vid"]
+
+[sub_resource type="Environment" id="Environment_43vid"]
+background_energy_multiplier = 0.5
+ambient_light_color = Color(0.6327597, 0.8174881, 1, 1)
+ambient_light_energy = 1.75
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_fiowe"]
+
+[sub_resource type="Compositor" id="Compositor_quawd"]
+
+[node name="Node3D" type="Node3D" unique_id=2108125853]
+
+[node name="level2" parent="." unique_id=1417142088 instance=ExtResource("1_ybdc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2657528, 0)
+
+[node name="level_fillings" parent="." unique_id=1676206244 instance=ExtResource("2_3ulyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2040472, 0)
+
+[node name="Boss" parent="." unique_id=1434885039 node_paths=PackedStringArray("player") instance=ExtResource("3_q46b8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4297132, 0)
+player = NodePath("../player")
+
+[node name="player" parent="." unique_id=964518628 node_paths=PackedStringArray("enemy") instance=ExtResource("4_43vid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.228256, 2.7729158, 0.050538063)
+enemy = NodePath("../Boss")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1818186126]
+environment = SubResource("Environment_43vid")
+camera_attributes = SubResource("CameraAttributesPractical_fiowe")
+compositor = SubResource("Compositor_quawd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1519640729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.678513, 65.44656, 0)
+light_color = Color(0.8283412, 1, 0.85785544, 1)
+light_energy = 21.05
+omni_range = 383.424

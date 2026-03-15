@@ -18,8 +18,8 @@ const ringBlast = preload("res://entities/player/PlayerProj.tscn")
 #func set_state(new_state: int) -> void:
 #pass
 
-@export var hp_max:int = 5
-var hp:int = 5: set = set_health
+@export var hp_max:int = 6
+var hp:int = 6: set = set_health
 signal health_changed(old_value, new_value)
 
 func set_health(amount: int) -> void:
