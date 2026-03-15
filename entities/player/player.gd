@@ -8,7 +8,7 @@ const JUMP_VELOCITY = 8
 @export var dash_duration: float = 0.2
 
 const ringBlast = preload("res://entities/player/PlayerProj.tscn")
-const audio = [preload("res://assets/audio/swoosh.ogg"), preload("res://assets/audio/splash.ogg")]
+const audio = [preload("res://assets/audio/swoosh.ogg"), preload("res://assets/audio/splash.ogg"), preload("res://assets/audio/voicelines/game_over.ogg")]
 
 
 
@@ -37,6 +37,8 @@ func set_health(amount: int) -> void:
 			hp=0
 			print("PLAYER IS DEAD!")
 			$"../BGM".stop()
+			$"../Boss/BSFX".stream = audio[2]
+			$"../Boss/BSFX".play()
 			#LOSING STATE HERE
 	
 	emit_signal("health_changed", old, hp)
