@@ -1,3 +1,4 @@
+class_name Boss
 extends CharacterBody3D
 const waterball = preload("res://entities/bossKreatura/attacks/waterball.tscn")
 const rising_attack = preload("res://entities/bossKreatura/attacks/ground rise attack.tscn")
@@ -14,6 +15,7 @@ var increment:int = 0
 
 var hp:int = 20: set = set_hp
 func set_hp(new_hp:int)-> void:
+	print("boss took damage wowza")
 	hp=new_hp
 	if hp <=4:
 		invulnerability=true
