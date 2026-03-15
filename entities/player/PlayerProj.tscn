@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cmw4jnk260ab5"]
+
+[ext_resource type="Script" uid="uid://c62h8cdjeefdu" path="res://entities/player/player_proj.gd" id="1_2yyx7"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_01qlx"]
+rings = 8
+ring_segments = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2yyx7"]
+
+[node name="PlayerProj" type="RigidBody3D" unique_id=611931798]
+collision_layer = 0
+collision_mask = 4
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_2yyx7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=836889211]
+mesh = SubResource("TorusMesh_01qlx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1883705417]
+shape = SubResource("BoxShape3D_2yyx7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

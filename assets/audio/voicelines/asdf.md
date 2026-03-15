@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 grunt0
 grunt1
 grunt2
@@ -12,3 +13,5 @@ new_game = there is no escape	= il n'y a pas d'issue
 game_over = evil laugh
 
 victory = noooooo		= Ce n'est pas possible
+=======
+>>>>>>> dev
