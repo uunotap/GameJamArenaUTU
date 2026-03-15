@@ -2,6 +2,8 @@ class_name Boss
 extends CharacterBody3D
 const waterball = preload("res://entities/bossKreatura/attacks/waterball.tscn")
 const rising_attack = preload("res://entities/bossKreatura/attacks/ground rise attack.tscn")
+const audio = [preload("res://assets/audio/voicelines/grunt0.ogg"), preload("res://assets/audio/voicelines/grunt1.ogg"), preload("res://assets/audio/voicelines/grunt2.ogg"), preload("res://assets/audio/voicelines/grunt3.ogg"), preload("res://assets/audio/voicelines/grunt4.ogg"), preload("res://assets/audio/voicelines/grunt5.ogg"), preload("res://assets/audio/voicelines/grunt6.ogg"), preload("res://assets/audio/voicelines/grunt7.ogg"), preload("res://assets/audio/voicelines/grunt8.ogg"), preload("res://assets/audio/voicelines/special_attack0.ogg"), preload("res://assets/audio/voicelines/special_attack1.ogg"), preload("res://assets/audio/voicelines/special_attack2.ogg"), preload("res://assets/audio/voicelines/new_game.ogg"), preload("res://assets/audio/voicelines/victory.ogg")] 
+# 0-9 grunt, 10-12 spec, 13 ng, 14 W
 @export var player:Player
 
 
@@ -15,7 +17,9 @@ var increment:int = 0
 
 var hp:int = 20: set = set_hp
 func set_hp(new_hp:int)-> void:
-	print("boss took damage wowza")
+	print( "boss took damage wowza")
+	$BSFX.stream = audio[randi() % 9]
+	$BSFX.play()
 	hp=new_hp
 	if hp <=4:
 		invulnerability=true
@@ -40,6 +44,9 @@ func set_state(new_state: phaseState) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"../BGM".play()
+	$BSFX.stream = audio[13]
+	$BSFX.play()
 	$"basic attack".start()
 
 
@@ -72,10 +79,26 @@ func shoot_ball_perpendicular(target:Vector3, height:float, speedmod:float):
 		instance.look_at(target)
 		return instance
 		
+func shoot_wall(target:Vector3, height:float, speedmod:float, offsets:Array[int]):
+		for offset1 in offsets:
+			for offset2 in offsets:
+				for offset3 in offsets:
+					var off_tar=Vector3(target.x+offset1,target.y,target.z+offset3)
+					shoot_ball_perpendicular(off_tar, offset2, 1)
+				
+
 func curve_ball(ball:WaterBall, turn:int):
 	
 	ball.curve_strength=turn
 	ball.curving=true
+	
+	
+
+func curveWave(target:Vector3, speed:float, curve:int, height:float,offsets:Array[int]):
+	for offset1 in offsets:
+		for offset2 in offsets:
+			var around=Vector3(target.x+offset1,height,target.z+offset2)
+			curve_ball(	shoot_ball_perpendicular(around, 0, speed),curve)
 
 
 
@@ -121,27 +144,88 @@ func phase1logic():
 
 		if stateAtt==attState.BASIC:
 			if increment%3 ==0:
-				shoot_ball_perpendicular(player.global_position,2,1)
+				shoot_ball_perpendicular(player.global_position,1,1)
 				#var rand_off=Vector3(randi_range(-8,8),randi_range(-2,2),randi_range(-8,8))
 				#shoot_ball_target(player.global_position+rand_off,1)
 				#shoot_ball_target(player.global_position-rand_off,1)
 			elif increment % 5 ==0:
 				var offset=randi_range(10, 25)
-				#scatter_ball(player.global_position, 1, [0, offset, -offset])
+				scatter_ball(player.global_position, 1, [0, offset, -offset])
 			else:
-				#shoot_ball_target(player.global_position,2)
+				
+				
+				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),100)
+				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),100)
 				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),100)
 				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),-100)
 				
 		elif stateAtt==attState.ALT:
 			var offset=randi_range(10, 30)
+<<<<<<< HEAD
+			scatter_rise(player.global_position, [0, offset, -offset], 10)
+=======
 			scatter_rise(player.global_position, [0, offset, -offset], 4)
+			$BSFX.stream = audio[9 + (randi() % 3)]
+			$BSFX.play()
+>>>>>>> 2acde44c851a0b5f1e884a942cfeefa148692cfc
 		elif stateAtt==attState.SWEEP:
-			var side:bool =randi_range(0,1)
+			for i in range(4):
+				var speed_variance =randi_range(1,1+i)
+				var curve_variance =randi_range(1,2)*25
+				curveWave(player.global_position,speed_variance,curve_variance,1,[-100,100])
+			
 		
 	increment+=1	
 
 
+
+
+func phase2logic():
+	if attacks >= amount_att:
+		attacks=0
+		print("attack step", step)
+		if step == 1 :
+			stateAtt=attState.ALT
+			amount_att=5
+		elif step == 2 or step ==0:
+			stateAtt=attState.BASIC
+			amount_att=50
+		elif step == 3:
+			stateAtt = attState.SWEEP
+			amount_att=1
+		else:
+			step=0
+		step+=1	
+
+
+	if increment%2 ==0:
+		attacks += 1
+		var speed_variance =randi_range(1,8)
+		var curve_variance =randi_range(1,2)*25
+		curveWave(player.global_position,speed_variance,curve_variance,1,[-100,100])
+		if stateAtt==attState.BASIC:
+			if increment%3 ==0:
+				var rand_off=Vector3(randi_range(-8,8),randi_range(-2,2),randi_range(-8,8))
+				shoot_ball_target(player.global_position+rand_off,1)
+				shoot_ball_target(player.global_position-rand_off,1)
+			elif increment % 5 ==0:
+				var offset=randi_range(10, 25)
+				scatter_ball(player.global_position, 1, [0, offset, -offset])
+			else:
+				
+				shoot_ball_perpendicular(player.global_position,1,1)				
+				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),100)
+				curve_ball(	shoot_ball_perpendicular(player.global_position, 0, 2),-100)
+				
+		elif stateAtt==attState.ALT:
+			var offset=randi_range(15, 25)
+			scatter_rise(player.global_position, [offset, -offset], 5)
+		elif stateAtt==attState.SWEEP:
+			speed_variance =randi_range(1,5)
+			curveWave(player.global_position,speed_variance,curve_variance,1,[-100,100])
+			
+		
+	increment+=1	
 
 
 

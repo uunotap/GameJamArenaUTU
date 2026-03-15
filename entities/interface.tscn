@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://di38aq7tdk5nn"]
 
 [ext_resource type="Script" uid="uid://ci7ad7oflptkw" path="res://entities/interface.gd" id="1_1dmr3"]
+[ext_resource type="Texture2D" uid="uid://dg6ys8jyiy653" path="res://assets/Life_full.png" id="2_npj7l"]
 
 [node name="Interface" type="Control" unique_id=459451547]
 layout_mode = 3
@@ -10,3 +11,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1dmr3")
+metadata/_edit_vertical_guides_ = [192.0]
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=443312440]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 565.0
+offset_right = 820.0
+offset_bottom = 642.0
+
+[node name="hp1" type="TextureRect" parent="." unique_id=1561019942]
+layout_mode = 0
+offset_right = 93.0
+offset_bottom = 100.0
+texture = ExtResource("2_npj7l")
+
+[node name="hp2" type="TextureRect" parent="." unique_id=981908878]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 193.0
+offset_bottom = 100.0
+
+[node name="hp3" type="TextureRect" parent="." unique_id=91196202]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 293.0
+offset_bottom = 100.0
+
+[node name="hp4" type="TextureRect" parent="." unique_id=2009737246]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 393.0
+offset_bottom = 100.0
+
+[node name="hp5" type="TextureRect" parent="." unique_id=1404569623]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 493.0
+offset_bottom = 100.0
+
+[node name="hp6" type="TextureRect" parent="." unique_id=1896069585]
+layout_mode = 0
+offset_left = 500.0
+offset_right = 593.0
+offset_bottom = 100.0

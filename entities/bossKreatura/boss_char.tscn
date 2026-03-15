@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bn2u0b5mheur6"]
+
+[ext_resource type="PackedScene" uid="uid://d0oa4qpw1jc5g" path="res://assets/boss_char.glb" id="1_dwnq3"]
+
+[node name="boss_char" unique_id=108628762 instance=ExtResource("1_dwnq3")]

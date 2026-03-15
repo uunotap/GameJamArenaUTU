@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cn7i8r7jkl8jp"]
+
+[ext_resource type="PackedScene" uid="uid://dfo1pigsyxojo" path="res://assets/level.glb" id="1_0piws"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0piws"]
+albedo_color = Color(0.19215687, 0.16862746, 0.20392157, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0piws"]
+
+[node name="level" unique_id=1417142088 instance=ExtResource("1_0piws")]
+
+[node name="Plane" parent="." index="0" unique_id=699007479]
+material_override = SubResource("StandardMaterial3D_0piws")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1257961158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.893469, 1.6184931, -22.766994)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2117240443]
+shape = SubResource("WorldBoundaryShape3D_0piws")
